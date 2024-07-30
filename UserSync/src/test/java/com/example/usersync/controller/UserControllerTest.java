@@ -11,12 +11,14 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Arrays;
 import java.util.Optional;
 
 import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -51,7 +53,7 @@ class UserControllerTest {
                 .content(objectMapper.writeValueAsString(user)))
                 .andExpect(status().isOk())
             .andExpect(jsonPath("$.name", is(user.getName())));
-}
+    }
 
     @Test
     public void testGetUserById() throws Exception {
@@ -61,5 +63,16 @@ class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", is(user.getName())));
+    }
+
+
+    @Test
+    public void testGetAllUsers() throws Exception {
+        given(userService.getAllUsers()).willReturn(Arrays.asList(user));
+
+        mockMvc.perform(get("/users")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name", is(user.getName())));
     }
 }
