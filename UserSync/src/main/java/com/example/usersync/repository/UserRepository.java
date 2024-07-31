@@ -1,5 +1,6 @@
-package com.example.usersync;
+package com.example.usersync.repository;
 
+import com.example.usersync.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

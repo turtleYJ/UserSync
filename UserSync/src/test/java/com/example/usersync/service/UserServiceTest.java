@@ -1,7 +1,7 @@
 package com.example.usersync.service;
 
-import com.example.usersync.User;
-import com.example.usersync.UserRepository;
+import com.example.usersync.model.User;
+import com.example.usersync.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

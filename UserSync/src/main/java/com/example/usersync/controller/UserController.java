@@ -1,11 +1,9 @@
 package com.example.usersync.controller;
 
-import com.example.usersync.User;
+import com.example.usersync.model.User;
 import com.example.usersync.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.juli.logging.Log;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

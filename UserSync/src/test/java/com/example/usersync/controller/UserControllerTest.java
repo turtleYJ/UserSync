@@ -1,6 +1,6 @@
 package com.example.usersync.controller;
 
-import com.example.usersync.User;
+import com.example.usersync.model.User;
 import com.example.usersync.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;

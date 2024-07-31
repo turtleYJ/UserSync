@@ -1,5 +1,7 @@
 package com.example.usersync;
 
+import com.example.usersync.model.User;
+import com.example.usersync.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
