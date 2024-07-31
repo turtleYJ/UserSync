@@ -3,10 +3,12 @@ package com.example.usersync.service;
 import com.example.usersync.model.User;
 import com.example.usersync.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class UserService {
 
     @Autowired
