@@ -5,6 +5,7 @@ import com.example.usersync.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.juli.logging.Log;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -42,5 +43,11 @@ public class UserController {
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
         user.setId(id);
         return userService.updateUser(user);
+    }
+
+    @ApiOperation(value = "Delete a user")
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
     }
 }
