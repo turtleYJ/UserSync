@@ -37,8 +37,10 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @ApiOperation(value = "Update a user")
     @PutMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
+        user.setId(id);
         return userService.updateUser(user);
     }
 }
