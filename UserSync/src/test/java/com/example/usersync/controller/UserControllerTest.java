@@ -18,6 +18,7 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -74,5 +75,17 @@ class UserControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].name", is(user.getName())));
+    }
+
+    @Test
+    public void testUpdateUser() throws Exception {
+        given(userService.updateUser(any(User.class))).willReturn(user);
+        user.setName("Jane Doe");
+
+        mockMvc.perform(put("/users/{id}", 1L)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(user)))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is("Jane Doe")));
     }
 }
