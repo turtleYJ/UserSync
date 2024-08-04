@@ -1,0 +1,14 @@
+User
+-------------------------
+- id: Long
+- name: String
+- employeeId: String
+- email: String
+- position: String
+- note: String
+- departmentId: Long (foreign key)
+
+Department
+-------------------------
+- id: Long
+- name: String
