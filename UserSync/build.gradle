@@ -37,6 +37,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mockito:mockito-core:4.6.1'
 	testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
+	testImplementation 'org.springframework.amqp:spring-rabbit-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
