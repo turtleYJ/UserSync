@@ -16,7 +16,7 @@ import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(WebhookControllerTest.class)
+@WebMvcTest(WebhookController.class)
 @RabbitListenerTest
 public class WebhookControllerTest {
 
@@ -35,11 +35,15 @@ public class WebhookControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
+        ArgumentCaptor<String> queueNameCaptor = ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<String> payloadCaptor = ArgumentCaptor.forClass(String.class);
-        verify(rabbitTemplate).convertAndSend(payloadCaptor.capture()); // 실제로 convertAndSend 메서드가 실행됐는지 확인
+        verify(rabbitTemplate).convertAndSend(queueNameCaptor.capture(), payloadCaptor.capture()); // 실제로 convertAndSend 메서드가 실행됐는지 확인
 
         // 캡처한 페이로드와 실제 페이로드가 일치하는지 확인
+        String capturedQueueName = queueNameCaptor.getValue();
         String capturedPayload = payloadCaptor.getValue();
+
+        assertThat(capturedQueueName).isEqualTo("webhookQueue");
         assertThat(capturedPayload).isEqualTo(testPayload);
     }
 }
