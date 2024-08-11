@@ -1,0 +1,12 @@
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes: # 호스트와 컨테이너 간 파일 시스템 공유를 정의.
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml # 호스트의 prometheus.yml 파일을 컨테이너 내의 지정된 경로로 마운트
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"

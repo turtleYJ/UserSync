@@ -1,0 +1,8 @@
+global:
+  scrape_interval: 15s # 스크레핑 인터벌
+
+scrape_configs:
+  - job_name: 'spring-actuator' # 이 스크레핑 설정의 이름
+    metrics_path: '/actuator/prometheus' # 메트릭 경로를 설정 (Spring Boot Actuator의 기본 경로)
+    static_configs:
+      - targets: ['host.docker.internal:8080'] # Docker 컨테이너가 호스트 시스템의 네트워크를 인식할 수 있는 주소
